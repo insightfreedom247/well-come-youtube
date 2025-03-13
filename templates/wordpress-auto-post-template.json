@@ -1,0 +1,159 @@
+{
+  "name": "WordPress Auto Poster",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "https://example.com/feed",
+        "options": {
+          "returnAll": false,
+          "limit": 5
+        }
+      },
+      "name": "RSS Feed",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1,
+      "position": [
+        250,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Xử lý dữ liệu từ RSS Feed\nfor (const item of items) {\n  // Lấy tiêu đề và nội dung từ item\n  const title = item.title;\n  const content = item.content || item.summary || item.description;\n  const link = item.link;\n  \n  // Tạo nội dung WordPress\n  item.wordpress = {\n    title,\n    content: `${content}<p>Nguồn: <a href=\"${link}\">${link}</a></p>`,\n    status: \"draft\", // Có thể đổi thành \"publish\" nếu muốn đăng ngay\n    categories: [1], // ID của category, thay đổi theo WordPress site của bạn\n    featured_media: 0, // ID của ảnh đại diện nếu có\n    excerpt: item.summary || \"\"\n  };\n}\n\nreturn items;"
+      },
+      "name": "Prepare WordPress Post",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        500,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "applicationPassword",
+        "url": "https://your-wordpress-site.com",
+        "username": "your-username",
+        "password": "your-app-password",
+        "resource": "post",
+        "operation": "create",
+        "title": "={{ $json.wordpress.title }}",
+        "content": "={{ $json.wordpress.content }}",
+        "status": "={{ $json.wordpress.status }}",
+        "categories": "={{ $json.wordpress.categories }}",
+        "additionalFields": {
+          "featured_media": "={{ $json.wordpress.featured_media }}",
+          "excerpt": "={{ $json.wordpress.excerpt }}"
+        }
+      },
+      "name": "WordPress",
+      "type": "n8n-nodes-base.wordpress",
+      "typeVersion": 1,
+      "position": [
+        750,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.success }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "name": "IF (Post Created)",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "to": {
+          "value": "your-email@example.com"
+        },
+        "subject": "New Post Created: {{ $json.wordpress.title }}",
+        "text": "=A new post has been created on your WordPress site.\n\nTitle: {{ $json.wordpress.title }}\nStatus: {{ $json.wordpress.status }}\nLink: {{ $json.link }}"
+      },
+      "name": "Send Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        1250,
+        200
+      ]
+    }
+  ],
+  "connections": {
+    "RSS Feed": {
+      "main": [
+        [
+          {
+            "node": "Prepare WordPress Post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare WordPress Post": {
+      "main": [
+        [
+          {
+            "node": "WordPress",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WordPress": {
+      "main": [
+        [
+          {
+            "node": "IF (Post Created)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF (Post Created)": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": ""
+  },
+  "tags": [
+    "wordpress",
+    "automation",
+    "rss",
+    "content"
+  ],
+  "pinData": {},
+  "versionId": "",
+  "triggerCount": 0,
+  "meta": {
+    "instanceId": "YOUR_INSTANCE_ID"
+  },
+  "id": "wordpress-auto-poster"
+}
