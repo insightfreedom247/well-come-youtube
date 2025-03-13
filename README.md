@@ -2,6 +2,12 @@
 
 Repository này chứa hướng dẫn và workflow mẫu để tự động đăng bài lên website WordPress sử dụng công cụ tự động hóa n8n.
 
+## Tài Liệu Hướng Dẫn
+
+- [Hướng dẫn cài đặt n8n](docs/n8n-installation.md)
+- [Hướng dẫn import template](docs/import-template.md)
+- [Sơ đồ workflow](docs/workflow-diagram.md)
+
 ## n8n là gì?
 
 n8n là một công cụ tự động hóa workflow mã nguồn mở, cho phép bạn kết nối các dịch vụ khác nhau và tự động hóa các tác vụ mà không cần viết code. n8n có giao diện trực quan dạng kéo thả, giúp bạn dễ dàng tạo các quy trình tự động.
@@ -32,21 +38,20 @@ n8n là một công cụ tự động hóa workflow mã nguồn mở, cho phép 
    - Mở trình duyệt và truy cập: http://localhost:5678
    - Đăng ký tài khoản hoặc đăng nhập
 
-3. **Tạo Workflow Mới**
-   - Nhấp vào "Create New Workflow"
-   - Đặt tên cho workflow, ví dụ: "WordPress Auto Poster"
+3. **Import Workflow**
+   - Tải template từ [templates/wordpress-auto-post-template.json](templates/wordpress-auto-post-template.json)
+   - Trong n8n, nhấp vào "Import from File"
+   - Chọn file đã tải xuống
+   - Xem hướng dẫn chi tiết tại [docs/import-template.md](docs/import-template.md)
 
-4. **Thiết lập Workflow**
-   - Workflow này sẽ bao gồm các node sau:
-     - Trigger node (Schedule, Webhook, hoặc RSS Feed)
-     - Xử lý dữ liệu (Function, Text Manipulation)
-     - WordPress node để đăng bài
+4. **Cấu hình Workflow**
+   - Cập nhật thông tin RSS Feed (URL của kênh YouTube)
+   - Cập nhật thông tin WordPress (URL, username, password)
+   - Cấu hình các tùy chọn khác theo nhu cầu
 
 ## Chi Tiết Workflow
 
-Xem file `wordpress-auto-post.json` trong repository này để import vào n8n của bạn.
-
-### Mô tả các node:
+Template workflow bao gồm các node sau:
 
 1. **Trigger Node (RSS Feed)**
    - Theo dõi nguồn RSS để lấy nội dung mới
@@ -61,20 +66,26 @@ Xem file `wordpress-auto-post.json` trong repository này để import vào n8n 
    - Đăng bài với thông tin đã xử lý
    - Cấu hình: URL của WordPress site, thông tin xác thực, trạng thái bài đăng
 
-## Hướng Dẫn Import Workflow
+4. **IF Node**
+   - Kiểm tra xem bài đăng đã được tạo thành công chưa
 
-1. Tải file `wordpress-auto-post.json` từ repository này
-2. Trong n8n, nhấp vào "Import from File"
-3. Chọn file đã tải xuống
-4. Cấu hình các thông tin xác thực và URL
+5. **Email Node**
+   - Gửi thông báo khi bài đăng được tạo thành công
 
 ## Tùy Chỉnh Workflow
 
 Bạn có thể tùy chỉnh workflow này bằng cách:
 - Thay đổi trigger (sử dụng Schedule thay vì RSS)
 - Thêm các node xử lý nội dung (như AI Text Generation)
-- Thêm các node thông báo (Email, Telegram, Slack)
+- Thêm các node thông báo (Telegram, Slack)
 - Thêm điều kiện đăng bài (IF node)
+
+## Các File Trong Repository
+
+- **[templates/wordpress-auto-post-template.json](templates/wordpress-auto-post-template.json)**: Template workflow n8n để import
+- **[docs/n8n-installation.md](docs/n8n-installation.md)**: Hướng dẫn cài đặt n8n
+- **[docs/import-template.md](docs/import-template.md)**: Hướng dẫn import template
+- **[docs/workflow-diagram.md](docs/workflow-diagram.md)**: Sơ đồ workflow
 
 ## Tài Liệu Tham Khảo
 
