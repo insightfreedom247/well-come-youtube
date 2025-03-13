@@ -7,6 +7,7 @@ Repository này chứa hướng dẫn và workflow mẫu để tự động đă
 - [Hướng dẫn cài đặt n8n](docs/n8n-installation.md)
 - [Hướng dẫn import template](docs/import-template.md)
 - [Sơ đồ workflow](docs/workflow-diagram.md)
+- [**Hướng dẫn chi tiết cấu hình từng node**](docs/huong-dan-chi-tiet-n8n.md) ← **MỚI!**
 
 ## n8n là gì?
 
@@ -48,6 +49,7 @@ n8n là một công cụ tự động hóa workflow mã nguồn mở, cho phép 
    - Cập nhật thông tin RSS Feed (URL của kênh YouTube)
    - Cập nhật thông tin WordPress (URL, username, password)
    - Cấu hình các tùy chọn khác theo nhu cầu
+   - Xem hướng dẫn chi tiết tại [docs/huong-dan-chi-tiet-n8n.md](docs/huong-dan-chi-tiet-n8n.md)
 
 ## Chi Tiết Workflow
 
@@ -86,6 +88,7 @@ Bạn có thể tùy chỉnh workflow này bằng cách:
 - **[docs/n8n-installation.md](docs/n8n-installation.md)**: Hướng dẫn cài đặt n8n
 - **[docs/import-template.md](docs/import-template.md)**: Hướng dẫn import template
 - **[docs/workflow-diagram.md](docs/workflow-diagram.md)**: Sơ đồ workflow
+- **[docs/huong-dan-chi-tiet-n8n.md](docs/huong-dan-chi-tiet-n8n.md)**: Hướng dẫn chi tiết cấu hình từng node
 
 ## Tài Liệu Tham Khảo
 
