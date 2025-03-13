@@ -7,7 +7,8 @@ Repository này chứa hướng dẫn và workflow mẫu để tự động đă
 - [Hướng dẫn cài đặt n8n](docs/n8n-installation.md)
 - [Hướng dẫn import template](docs/import-template.md)
 - [Sơ đồ workflow](docs/workflow-diagram.md)
-- [**Hướng dẫn chi tiết cấu hình từng node**](docs/huong-dan-chi-tiet-n8n.md) ← **MỚI!**
+- [**Sơ đồ workflow cải tiến với hình ảnh đẹp**](docs/workflow-diagram-improved.md) ← **MỚI!**
+- [**Hướng dẫn chi tiết cấu hình từng node**](docs/huong-dan-chi-tiet-n8n.md)
 
 ## n8n là gì?
 
@@ -74,6 +75,8 @@ Template workflow bao gồm các node sau:
 5. **Email Node**
    - Gửi thông báo khi bài đăng được tạo thành công
 
+Xem sơ đồ workflow chi tiết và trực quan tại [docs/workflow-diagram-improved.md](docs/workflow-diagram-improved.md)
+
 ## Tùy Chỉnh Workflow
 
 Bạn có thể tùy chỉnh workflow này bằng cách:
@@ -87,7 +90,8 @@ Bạn có thể tùy chỉnh workflow này bằng cách:
 - **[templates/wordpress-auto-post-template.json](templates/wordpress-auto-post-template.json)**: Template workflow n8n để import
 - **[docs/n8n-installation.md](docs/n8n-installation.md)**: Hướng dẫn cài đặt n8n
 - **[docs/import-template.md](docs/import-template.md)**: Hướng dẫn import template
-- **[docs/workflow-diagram.md](docs/workflow-diagram.md)**: Sơ đồ workflow
+- **[docs/workflow-diagram.md](docs/workflow-diagram.md)**: Sơ đồ workflow cơ bản
+- **[docs/workflow-diagram-improved.md](docs/workflow-diagram-improved.md)**: Sơ đồ workflow cải tiến với hình ảnh đẹp
 - **[docs/huong-dan-chi-tiet-n8n.md](docs/huong-dan-chi-tiet-n8n.md)**: Hướng dẫn chi tiết cấu hình từng node
 
 ## Tài Liệu Tham Khảo
